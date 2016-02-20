@@ -2,6 +2,7 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string      :external_id
+      t.string      :url
       t.string      :name
       t.string      :description
       t.datetime    :start_time

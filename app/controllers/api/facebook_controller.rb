@@ -47,6 +47,7 @@ module Api
 
       event = {
         external_id: json['id'],
+        url: "https://www.facebook.com/events/#{json['id']}/",
         name: json['name'],
         description: json['description'],
         start_time: json['start_time'].try(:to_datetime),
@@ -54,8 +55,9 @@ module Api
         attending_count: json['attending_count'],
         interested_count: json['interested_count'],
         group_attributes: {
-          external_id: group['id'],
-          name: group['name']
+          external_id: group[:id],
+          name: group[:name],
+          url: "https://www.facebook.com/groups/#{group[:id]}/"
         }
       }
       event['location_attributes'] = location_attributes if location_attributes

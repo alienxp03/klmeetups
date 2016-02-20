@@ -37,6 +37,7 @@ module Api
 
       {
         external_id: json['id'],
+        url: json['event_url'],
         name: json['name'],
         description: json['description'],
         start_time: DateTime.strptime((json['time'] / 1000).to_s,'%s'),
@@ -44,7 +45,8 @@ module Api
         last_updated: DateTime.strptime((json['updated'] / 1000).to_s,'%s'),
         group_attributes: {
           external_id: json['group']['id'],
-          name: json['group']['name']
+          name: json['group']['name'],
+          url: "http://www.meetup.com/#{json['group']['urlname']}/"
         },
         location_attributes: {
           name: json['venue'].try(:[],'name'),

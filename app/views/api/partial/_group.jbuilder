@@ -1,2 +1,3 @@
-json.group_id     group.id
-json.group_name   group.name
+json.id     group.external_id
+json.name   group.name
+json.url    group.url

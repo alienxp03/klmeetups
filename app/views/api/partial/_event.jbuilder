@@ -1,4 +1,5 @@
 json.set! :id,    event.external_id
+json.url          event.url
 json.name         event.name
 json.description  event.description
 json.start_time   event.start_time
@@ -6,7 +7,9 @@ json.end_time     event.end_time
 json.attending    event.attending_count
 json.interested   event.interested_count
 
-json.partial! 'api/partial/group', group: event.group
+json.set! :group do
+  json.partial! 'api/partial/group', group: event.group
+end
 
 if event.location
   json.set! :location do  

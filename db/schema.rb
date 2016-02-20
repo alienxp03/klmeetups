@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160220124354) do
 
   create_table "events", force: :cascade do |t|
     t.string   "external_id"
+    t.string   "url"
     t.string   "name"
     t.string   "description"
     t.datetime "start_time"
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160220124354) do
   create_table "groups", force: :cascade do |t|
     t.string   "external_id"
     t.string   "name"
+    t.string   "url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
