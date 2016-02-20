@@ -18,13 +18,13 @@ You can find the group id using <a href="https://lookup-id.com/" target="_blank"
 1. Clone this project and bundle install:
 
   ```sh
-git clone git@github.com:alienxp03/malaysiameetups.git && cd malaysia
+git clone git@github.com:alienxp03/malaysiameetups.git && cd malaysiameetups
 bundle install
   ```
 
 2. Setup environment variables. Check file `.env.example`.
 
-3. Setup database. Check file `.database.yml.example`.
+3. Setup database. Check file `database.yml.example`.
 
 4. Run `rake db:create && rake:db:migrate`
 
