@@ -5,6 +5,7 @@ gem 'rails', '4.2.5'
 gem 'pg'
 gem 'jbuilder'
 gem 'koala', '~> 2.2'
+gem 'http'
 gem 'rails_12factor'
 
 group :development, :test do

@@ -10,6 +10,8 @@ I thought it would be a good idea if I can discover events from Facebook groups,
 ##Contributions
 I need help, of course. Currently it will only find events based on groups, which are defined in <a href="https://github.com/alienxp03/malaysiameetups/blob/master/app/controllers/api/facebook_groups.rb" target="_blank">FacebookGroups</a>. You can either create a new pull request, or submit an issue.
 
+You can find the group id using <a href="https://lookup-id.com/" target="_blank">lookup-id</a>
+
 
 ## Quick start
 
@@ -31,7 +33,6 @@ bundle install
 ## TODO
 - Write tests
 - Add more Facebook groups
-- Add Meetup API
 - Add events manually
 
 ##License

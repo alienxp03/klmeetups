@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :group
   belongs_to :location
+  accepts_nested_attributes_for :group
   accepts_nested_attributes_for :location
 
   scope :latest, -> { all }
