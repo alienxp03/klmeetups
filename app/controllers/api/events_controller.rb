@@ -8,6 +8,7 @@ module Api
         BaseApi.first.update(last_updated: Time.now)
       end
       @events = Event.latest
+      @base_api = BaseApi.first
     end
   end
 end
