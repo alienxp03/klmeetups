@@ -25,7 +25,10 @@ module Api
         group = events[:group]
 
         events[:events].each do |json|
-          event = Event.find_or_create_by(external_id: json['id'])
+          next if ['malaysia', 'my'].exclude?(json['place']
+            .try(:[],'location').try(:[],'country').try(:downcase))
+
+          event = Event.find_or_initialize_by(external_id: json['id'])
 
           next if event.last_updated == json['updated_time'].to_datetime
           event.update(event_hash(json, group))

@@ -1,7 +1,8 @@
+[ ![Codeship Status for alienxp03/malaysiameetups](https://codeship.com/projects/eebb8860-bbc4-0133-8370-72d8958adba6/status?branch=master)](https://codeship.com/projects/135999)
+
 #Malaysia Events
 
 I thought it would be a good idea if I can discover events from Facebook groups, or Meetup. I got the idea from <a href="https://github.com/webuildsg/webuild" target="_blank">webuildsg</a>.
-
 
 ##API endpoints
 
