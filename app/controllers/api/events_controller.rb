@@ -1,11 +1,13 @@
+# Api::EventsController
+
 module Api
   class EventsController < ApiApplicationController
     def index
-      if !Event.updated?
+      unless Event.updated?
         Api::FacebookController.update_events
         Api::MeetupController.update_events
 
-        BaseApi.first.update(last_updated: Time.now)
+        BaseApi.first.update(last_updated: Time.current)
       end
       @events = Event.latest
       @base_api = BaseApi.first

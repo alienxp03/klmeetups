@@ -19,7 +19,7 @@
 #
 
 class Event < ActiveRecord::Base
-  validates_uniqueness_of :external_id, case_sensitive: true
+  validates :external_id, uniqueness: true
   validates :name, :url, :external_id, presence: true
 
   belongs_to :group

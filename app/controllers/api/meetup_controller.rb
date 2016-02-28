@@ -1,3 +1,5 @@
+# Api::MeetupController
+
 module Api
   class MeetupController < ApiApplicationController
     BASE_URL = "https://api.meetup.com/2/open_events?"\
@@ -12,7 +14,7 @@ module Api
       make_request(URI.escape(BASE_URL))['results'].each do |result|
         event = Event.find_or_create_by(external_id: result['id'])
         last_updated = DateTime.strptime((result['updated'] / 1000).to_s,'%s')
-        
+
         next if event.last_updated == last_updated
         event.update(event_hash(result))
       end
@@ -20,20 +22,20 @@ module Api
 
     private
 
-    def self.event_hash(json)
-      lat =
-        if json['venue'].try(:[], 'lat')
-          json['venue']['lat'] == 0 ? nil : json['venue']['lat']
-        else
-          nil
-        end
+    def self.lat_long_from_json(json)
+      venue = json['venue']
 
-      lon =
-        if json['venue'].try(:[], 'lon')
-          json['venue']['lon'] == 0 ? nil : json['venue']['lon']
-        else
-          nil
-        end
+      return unless venue.try(:[], 'lat') && venue.try(:[], 'lon')
+
+      latitude = venue['lat'] == 0 ? nil : venue['lat']
+      longitude = venue['lon'] == 0 ? nil : venue['lon']
+      [latitude, longitude]
+    end
+
+    def self.event_hash(json)
+      lat, lon = lat_long_from_json(json)
+      group = json['group']
+      venue = json['venue']
 
       {
         external_id: json['id'],
@@ -44,15 +46,15 @@ module Api
         attending_count: json['headcount'],
         last_updated: DateTime.strptime((json['updated'] / 1000).to_s,'%s'),
         group_attributes: {
-          external_id: json['group']['id'],
-          name: json['group']['name'],
-          url: "http://www.meetup.com/#{json['group']['urlname']}/"
+          external_id: group['id'],
+          name: group['name'],
+          url: "http://www.meetup.com/#{group['urlname']}/"
         },
         location_attributes: {
-          name: json['venue'].try(:[],'name'),
-          street: json['venue'].try(:[], 'address_1'),
+          name: venue.try(:[],'name'),
+          street: venue.try(:[], 'address_1'),
           city: ENV['CITY'],
-          state: json['venue'].try(:[],'state'),
+          state: venue.try(:[],'state'),
           country: ENV['COUNTRY'],
           latitude: lat,
           longitude: lon

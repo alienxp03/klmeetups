@@ -12,7 +12,7 @@ json.set! :group do
 end
 
 if event.location
-  json.set! :location do  
+  json.set! :location do
     json.partial! 'api/partial/location', location: event.location
   end
 end

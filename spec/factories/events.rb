@@ -22,7 +22,7 @@ FactoryGirl.define do
   sequence(:event_time) { |n| Time.current + n.hour }
 
   factory :event do
-    sequence(:external_id) { |n| "#external_id{n}" }
+    sequence(:external_id) { |n| "external_id#{n}" }
     name              { FFaker::Lorem.word }
     url               { FFaker::Internet.http_url }
     description       { FFaker::Lorem.sentence }

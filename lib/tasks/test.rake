@@ -17,7 +17,8 @@ namespace :test do
 
     desc 'Execute reek'
     Reek::Rake::Task.new do |task|
-      task.source_files = '{app/**/*.rb,lib/**/*.rb,lib/tasks/*.rake,config/**/*.rb}'
+      task.source_files = '{app/**/*.rb,lib/**/*.rb,' \
+                          'lib/tasks/*.rake,config/**/*.rb}'
       task.fail_on_error = false
       task.verbose = true
     end

@@ -1,3 +1,5 @@
+# Api::FacebookController
+
 module Api
   class FacebookController < ApiApplicationController
     def self.update_events

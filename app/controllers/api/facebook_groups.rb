@@ -1,3 +1,5 @@
+# Api::FacebookGroups
+
 module Api
   class FacebookGroups
     GROUPS = [

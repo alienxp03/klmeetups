@@ -1,3 +1,5 @@
+# Api::ApiApplicationController
+
 module Api
   class ApiApplicationController < ActionController::Base
     before_action :authorize!, except: [:oauth]
