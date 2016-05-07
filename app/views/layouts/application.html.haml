@@ -1,0 +1,46 @@
+!!!
+%html{:lang => "en"}
+  %head
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    %meta{:charset => "utf-8"}
+      %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+        %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+          %meta{:content => "", :name => "description"}
+            %meta{:content => "", :name => "author"}
+              %title MalaysianMeetups
+              / Bootstrap Core CSS
+              = stylesheet_link_tag 'bootstrap.min.css'
+              / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+              / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+              = stylesheet_link_tag 'font-awesome.min.css'
+              = stylesheet_link_tag 'animate.min.css'
+              = stylesheet_link_tag 'creative.css'
+  %body#page-top
+    %nav#mainNav.navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+          %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand.page-scroll{:href => "#page-top"} Malaysian Meetups
+        / Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            %li{class: current_page?(root_path) ? 'active' : ''}
+              = link_to('Home', root_path)
+            %li{class: current_page?(add_events_path) ? 'active' : ''}
+              = link_to('Submit event', add_events_path)
+        / /.navbar-collapse
+      / /.container-fluid
+    = yield
+    / jQuery
+    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'bootstrap.min'
+    = javascript_include_tag 'jquery.easing.min'
+    = javascript_include_tag 'jquery.fittext'
+    = javascript_include_tag 'wow.min'
+    = javascript_include_tag 'creative'

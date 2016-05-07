@@ -1,0 +1,22 @@
+!!!
+%html{:lang => "en"}
+  %head
+    = stylesheet_link_tag 'bootstrap.min.css'
+  %body
+    .text-center
+      %h2{style: 'margin-top: 100px'} Log in
+      %br/
+      .form
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .row
+            .col-sm-4.col-sm-offset-4
+              .form-group
+                = f.email_field :email, autofocus: true, class: 'form-control'
+          .row
+            .col-sm-4.col-sm-offset-4
+              .form-group
+                = f.password_field :password, autocomplete: "off", class: 'form-control'
+          .row
+            .col-sm-4.col-sm-offset-4
+              .form-group
+                = f.submit "Log in", class: 'btn btn-info btn-block'

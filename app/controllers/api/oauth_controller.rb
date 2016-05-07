@@ -1,7 +1,7 @@
 # Api::OauthController
 
 module Api
-  class OauthController < ApiApplicationController
+  class OauthController < Api::ApplicationController
     skip_before_filter :authorize!
 
     def index

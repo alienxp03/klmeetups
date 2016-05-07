@@ -1,40 +1,30 @@
-# == Schema Information
-#
-# Table name: events
-#
-#  id               :integer          not null, primary key
-#  external_id      :string
-#  url              :string
-#  name             :string
-#  description      :string
-#  start_time       :datetime
-#  end_time         :datetime
-#  attending_count  :string
-#  interested_count :string
-#  last_updated     :datetime
-#  group_id         :integer
-#  location_id      :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#
-
 class Event < ActiveRecord::Base
-  validates :external_id, uniqueness: true
-  validates :name, :url, :external_id, presence: true
-
   belongs_to :group
   belongs_to :location
   accepts_nested_attributes_for :group
   accepts_nested_attributes_for :location
 
-  scope :latest, -> { all }
+  enum entry_type: [:manual, :automated]
+  enum status: [:authorized, :disabled]
 
-  def self.updated?
-    BaseApi.create(last_updated: 1.month.ago) if BaseApi.count == 0
+  validates :name, :url, :description, :entry_type, :status, :start_time, presence: true
+  validates :email, presence: true, if: 'manual?'
+  validates :external_id, :group, presence: true, if: 'automated?'
 
-    if count == 0 || (Time.current - BaseApi.last.last_updated) >= 1.hour / 2
-      return false
+  scope :all_events, -> { authorized }
+  scope :this_week, -> { authorized.where(start_time: DateTime.current..1.week.from_now) }
+  scope :this_month, -> { authorized.where(start_time: DateTime.current..1.month.from_now) }
+
+  class << self
+    def latest
+      authorized
+      .joins(:group).where(groups: { status: Group.statuses[:authorized] })
+      .where(start_time: DateTime.current..3.months.from_now)
     end
-    true
+
+    def prune
+      joins(:group).where(groups: { status: Group.statuses[:disabled] })
+      .delete_all
+    end
   end
 end

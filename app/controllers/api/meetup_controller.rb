@@ -1,7 +1,7 @@
 # Api::MeetupController
 
 module Api
-  class MeetupController < ApiApplicationController
+  class MeetupController < Api::ApplicationController
     BASE_URL = "https://api.meetup.com/2/open_events?"\
       "&sign=true"\
       "&key=#{ENV['MEETUP_API_KEY']}"\
@@ -12,15 +12,28 @@ module Api
 
     def self.update_events
       make_request(URI.escape(BASE_URL))['results'].each do |result|
-        event = Event.find_or_create_by(external_id: result['id'])
+        event = Event.find_or_initialize_by(external_id: result['id'])
         last_updated = DateTime.strptime((result['updated'] / 1000).to_s,'%s')
 
         next if event.last_updated == last_updated
-        event.update(event_hash(result))
+        group = group(result['group'])
+        event.update(event_hash(result, group)) if group.authorized?
       end
     end
 
     private
+
+    def self.group(json)
+      group = Group.meetup.find_or_initialize_by(external_id: json['id'])
+      group_status = group.status || 'authorized'
+      group.update(
+        status: group_status,
+        name: json['name'],
+        url: "http://www.meetup.com/#{json['urlname']}/"
+      )
+      group.save
+      group
+    end
 
     def self.lat_long_from_json(json)
       venue = json['venue']
@@ -32,24 +45,20 @@ module Api
       [latitude, longitude]
     end
 
-    def self.event_hash(json)
+    def self.event_hash(json, group)
       lat, lon = lat_long_from_json(json)
-      group = json['group']
       venue = json['venue']
 
       {
         external_id: json['id'],
         url: json['event_url'],
         name: json['name'],
+        status: 'authorized',
+        entry_type: 'automated',
         description: json['description'],
         start_time: DateTime.strptime((json['time'] / 1000).to_s,'%s'),
-        attending_count: json['headcount'],
         last_updated: DateTime.strptime((json['updated'] / 1000).to_s,'%s'),
-        group_attributes: {
-          external_id: group['id'],
-          name: group['name'],
-          url: "http://www.meetup.com/#{group['urlname']}/"
-        },
+        group: group,
         location_attributes: {
           name: venue.try(:[],'name'),
           street: venue.try(:[], 'address_1'),

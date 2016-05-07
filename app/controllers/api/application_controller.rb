@@ -1,7 +1,7 @@
 # Api::ApiApplicationController
 
 module Api
-  class ApiApplicationController < ActionController::Base
+  class ApplicationController < ActionController::Base
     before_action :authorize!, except: [:oauth]
 
     def authorize!

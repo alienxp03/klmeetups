@@ -5,15 +5,24 @@ gem 'pg'
 gem 'jbuilder'
 gem 'koala', '~> 2.2'
 gem 'http'
-gem 'annotate'
+gem 'devise'
 gem 'rails_12factor'
+
+gem 'rails_admin'
+
+gem 'sprockets', '~> 3.0'
 
 group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'ffaker'
+
+  # pry
+  gem 'pry'
   gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-clipboard'
 
   gem 'reek'
   gem 'rails_best_practices'
