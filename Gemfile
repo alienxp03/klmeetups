@@ -11,7 +11,8 @@ gem 'rails_12factor'
 gem 'sprockets', '~> 3.0'
 
 gem 'rails_admin'
-gem 'simple_calendar', '~> 2.0'
+gem 'momentjs-rails'
+gem 'fullcalendar-rails'
 
 group :development, :test do
   gem 'dotenv-rails'

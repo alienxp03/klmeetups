@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moment
+//= require fullcalendar
+//= require jquery.fittext
+//= require wow.min
 //= require_tree .

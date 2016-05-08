@@ -92,6 +92,10 @@ GEM
     ffaker (2.2.0)
     font-awesome-rails (4.6.1.0)
       railties (>= 3.2, < 5.1)
+    fullcalendar-rails (2.6.1.0)
+      jquery-rails (>= 4.0.5, < 5.0.0)
+      jquery-ui-rails (>= 5.0.2)
+      momentjs-rails (>= 2.9.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -135,6 +139,8 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    momentjs-rails (2.11.1)
+      railties (>= 3.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -263,8 +269,6 @@ GEM
     sexp_processor (4.6.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    simple_calendar (2.1.1)
-      rails (>= 3.0)
     slop (3.6.0)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -299,10 +303,12 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   ffaker
+  fullcalendar-rails
   http
   httparty
   jbuilder
   koala (~> 2.2)
+  momentjs-rails
   pg
   pry
   pry-byebug
@@ -316,7 +322,6 @@ DEPENDENCIES
   rspec-rails
   rubocop
   shoulda-matchers
-  simple_calendar (~> 2.0)
   sprockets (~> 3.0)
 
 BUNDLED WITH

@@ -11,10 +11,16 @@
 
 %section#home.bg-light
   .container
-    .row
-    = month_calendar events: @events do |date, events|
-      = date
+    #calendar
 
-      - events.each do |event|
-        %br
-        = link_to(event.name.truncate_words(3), event.url, target: '_blank')
+:javascript
+  var events = #{@events.map do |event| { title: event.name, start: event.start_time, url: event.url } end.to_json}
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+        events: events,
+        eventClick: function(calEvent, jsEvent, view) {
+          window.open(calEvent.url, '_blank');
+          return false;
+      }
+    })
+  });
