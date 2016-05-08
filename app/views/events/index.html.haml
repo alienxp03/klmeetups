@@ -1,0 +1,20 @@
+%section#home.bg-light-dark
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.text-center
+        %h2.section-heading Upcoming events
+      .col-lg-12.text-center
+        - @events.first(10).each do |event|
+          %hr.light
+            %h3=link_to(event.name, event.url, target: '_blank')
+            %p.text-faded=event.start_time.strftime('%d %B %Y %I:%M %p')
+
+%section#home.bg-light
+  .container
+    .row
+    = month_calendar events: @events do |date, events|
+      = date
+
+      - events.each do |event|
+        %br
+        = link_to(event.name.truncate_words(3), event.url, target: '_blank')

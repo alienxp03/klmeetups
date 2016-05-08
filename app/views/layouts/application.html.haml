@@ -32,6 +32,8 @@
           %ul.nav.navbar-nav.navbar-right
             %li{class: current_page?(root_path) ? 'active' : ''}
               = link_to('Home', root_path)
+            %li{class: current_page?(events_path) ? 'active' : ''}
+              = link_to('Events List', events_path)
             %li{class: current_page?(add_events_path) ? 'active' : ''}
               = link_to('Submit event', add_events_path)
         / /.navbar-collapse

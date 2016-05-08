@@ -5,12 +5,13 @@ gem 'pg'
 gem 'jbuilder'
 gem 'koala', '~> 2.2'
 gem 'http'
+gem 'httparty'
 gem 'devise'
 gem 'rails_12factor'
+gem 'sprockets', '~> 3.0'
 
 gem 'rails_admin'
-
-gem 'sprockets', '~> 3.0'
+gem 'simple_calendar', '~> 2.0'
 
 group :development, :test do
   gem 'dotenv-rails'

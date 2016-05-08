@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
 
   validates :name, :url, :description, :entry_type, :status, :start_time, presence: true
   validates :email, presence: true, if: 'manual?'
-  validates :external_id, :group, presence: true, if: 'automated?'
+  validates :external_id, presence: true, if: 'automated?'
 
   scope :all_events, -> { authorized }
   scope :this_week, -> { authorized.where(start_time: DateTime.current..1.week.from_now) }
@@ -20,6 +20,7 @@ class Event < ActiveRecord::Base
       authorized
       .joins(:group).where(groups: { status: Group.statuses[:authorized] })
       .where(start_time: DateTime.current..3.months.from_now)
+      .order(:start_time)
     end
 
     def prune

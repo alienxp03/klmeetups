@@ -60,6 +60,10 @@ RailsAdmin.config do |config|
 
       field :name do
         filterable false
+
+        pretty_value do
+          bindings[:view].link_to(value, bindings[:object].url, target: '_blank')
+        end
       end
       field :start_time do
         filterable false
@@ -93,7 +97,12 @@ RailsAdmin.config do |config|
 
       field :name do
         filterable false
+
+        pretty_value do
+          bindings[:view].link_to(value, bindings[:object].url, target: '_blank')
+        end
       end
+
       field :status do
         filterable false
 
