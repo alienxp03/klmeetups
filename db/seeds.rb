@@ -52,6 +52,12 @@ groups = [
     name: 'AWS User Group - Malaysia',
     url: 'https://www.facebook.com/groups/340337879386117',
     status: 'authorized'
+  },
+  {
+    external_id: '355839584447036',
+    name: '#OpenCoffeeClub',
+    url: 'https://www.facebook.com/groups/355839584447036',
+    status: 'authorized'
   }
 ]
 
