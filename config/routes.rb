@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :events, only: [:index] do
+  resources :events, only: [:new, :index] do
     collection do
-      get 'add'
+      post 'create', to: 'events#create', as: 'create'
     end
   end
 

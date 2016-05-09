@@ -13,6 +13,8 @@ gem 'sprockets', '~> 3.0'
 gem 'rails_admin'
 gem 'momentjs-rails'
 gem 'fullcalendar-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   gem 'dotenv-rails'

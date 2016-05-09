@@ -10,12 +10,12 @@
             %meta{:content => "", :name => "author"}
               %title MalaysianMeetups
               / Bootstrap Core CSS
-              = stylesheet_link_tag 'bootstrap.min.css'
+              / = stylesheet_link_tag 'bootstrap.min.css'
               / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
               / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-              = stylesheet_link_tag 'font-awesome.min.css'
-              = stylesheet_link_tag 'animate.min.css'
-              = stylesheet_link_tag 'creative.css'
+              / = stylesheet_link_tag 'font-awesome.min.css'
+              / = stylesheet_link_tag 'animate.min.css'
+              / = stylesheet_link_tag 'creative.css'
   %body#page-top
     %nav#mainNav.navbar.navbar-default.navbar-fixed-top
       .container-fluid
@@ -26,7 +26,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand.page-scroll{:href => "#page-top"} Malaysian Meetups
+          %a.navbar-brand.page-scroll{:href => root_path} Malaysian Meetups
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
@@ -34,8 +34,17 @@
               = link_to('Home', root_path)
             %li{class: current_page?(events_path) ? 'active' : ''}
               = link_to('Events List', events_path)
-            %li{class: current_page?(add_events_path) ? 'active' : ''}
-              = link_to('Submit event', add_events_path)
+            %li{class: current_page?(new_event_path) ? 'active' : ''}
+              = link_to('Submit event', new_event_path)
         / /.navbar-collapse
       / /.container-fluid
+    - if flash.count > 0
+      .bg-light-dark
+        .container
+          %br
+          %br
+          %br
+          - flash.each do |key, value|
+            %div{:class => "alert alert-#{key} text-center"}= value
     = yield
+    %script{:async => "", :defer => "", :src => "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY_BROWSER']}&libraries=places&callback=initAutocomplete", :type => "text/javascript"}

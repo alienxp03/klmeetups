@@ -44,6 +44,8 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
+    bootstrap3-datetimepicker-rails (4.17.37)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (8.2.1)
     clipboard (1.1.0)
@@ -62,6 +64,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colored (1.2)
+    commonjs (0.2.7)
     concurrent-ruby (1.0.0)
     database_cleaner (1.5.1)
     descendants_tracker (0.0.4)
@@ -131,6 +134,13 @@ GEM
       addressable
       faraday
       multi_json
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.7.1)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -280,6 +290,11 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
+    twitter-bootstrap-rails (3.2.2)
+      actionpack (>= 3.1)
+      execjs (>= 2.2.2, >= 2.2)
+      less-rails (>= 2.5.0)
+      railties (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -298,6 +313,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap3-datetimepicker-rails (~> 4.17.37)
   database_cleaner
   devise
   dotenv-rails
@@ -323,6 +339,7 @@ DEPENDENCIES
   rubocop
   shoulda-matchers
   sprockets (~> 3.0)
+  twitter-bootstrap-rails
 
 BUNDLED WITH
    1.11.2

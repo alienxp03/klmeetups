@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require twitter/bootstrap
 //= require moment
 //= require fullcalendar
+//= require bootstrap-datetimepicker
 //= require jquery.fittext
 //= require wow.min
 //= require_tree .
