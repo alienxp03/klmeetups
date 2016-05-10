@@ -103,6 +103,10 @@ RailsAdmin.config do |config|
         end
       end
 
+      field :origin do
+
+      end
+
       field :status do
         filterable false
 

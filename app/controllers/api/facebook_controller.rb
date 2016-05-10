@@ -24,7 +24,12 @@ module Api
 
     def self.fetch_latest(json_events)
       json_events.each do |events|
-        group = events[:group]
+        group = Group.find_or_initialize_by(external_id: events[:group][:external_id])
+        group.update(
+          name: events[:group][:name],
+          url: "https://www.facebook.com/groups/#{events[:group][:external_id]}/"
+        )
+
         events[:events].each do |json|
           next if ['malaysia', 'my'].exclude?(json['place']
             .try(:[],'location').try(:[],'country').try(:downcase))
@@ -33,12 +38,14 @@ module Api
           
           next if event.last_updated == json['updated_time'].to_datetime
 
-          event.update(event_hash(json, group))
+          event.update(event_params(json, group))
         end
       end
     end
 
-    def self.event_hash(json, group)
+    def self.event_params(json, group)
+      group
+
       location_attributes = {
         name: json['place']['name'],
         street: json['place'].try(:[],'location').try(:[],'street'),
@@ -54,14 +61,12 @@ module Api
         external_id: json['id'],
         url: "https://www.facebook.com/events/#{json['id']}/",
         name: json['name'],
+        status: 'authorized',
+        entry_type: 'automated',
         description: json['description'],
         start_time: json['start_time'].try(:to_datetime),
         end_time: json['end_time'].try(:to_datetime),
-        group_attributes: {
-          external_id: group.external_id,
-          name: group.name,
-          url: "https://www.facebook.com/groups/#{group.external_id}/"
-        }
+        group: group
       }
       event['location_attributes'] = location_attributes if location_attributes
       event

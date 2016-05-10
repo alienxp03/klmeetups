@@ -21,6 +21,16 @@ class Group < ActiveRecord::Base
 
   private
 
+  def origin
+    if url.include? 'facebook.com/'
+      'Facebook'
+    elsif url.include? 'meetup.com/'
+      'Meetup'
+    else
+      nil
+    end 
+  end
+
   def update_events
     status =
       if authorized?
