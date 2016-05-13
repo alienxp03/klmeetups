@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.latest
+    @events = Event.authorized
   end
 
   private
