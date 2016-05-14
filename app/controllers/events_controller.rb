@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(permitted_params)
+    @event = Event.new(new_event_params)
 
     if @event.save
     else
@@ -19,7 +19,16 @@ class EventsController < ApplicationController
 
   private
 
+  def new_event_params
+    permitted_params.merge(
+      entry_type: 'manual',
+      status: 'authorized'
+    )
+  end
+
   def permitted_params
-    params.require(:event).permit(:name, :description, :url, :start_time, :email)
+    params.require(:event)
+      .permit(:name, :description, :url, :start_time,:email,
+        location_attributes: [])
   end
 end

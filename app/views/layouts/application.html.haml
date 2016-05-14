@@ -47,4 +47,3 @@
           - flash.each do |key, value|
             %div{:class => "alert alert-#{key} text-center"}= value
     = yield
-    %script{:async => "", :defer => "", :src => "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY_BROWSER']}&libraries=places&callback=initAutocomplete", :type => "text/javascript"}
