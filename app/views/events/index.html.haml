@@ -4,7 +4,7 @@
       .col-lg-8.col-lg-offset-2.text-center
         %h2.section-heading Upcoming events
       .col-lg-12.text-center
-        - @events.first(10).each do |event|
+        - @events.latest.first(10).each do |event|
           %hr.light
             %h3=link_to(event.name, event.url, target: '_blank')
             %p.text-faded=event.start_time.strftime('%d %B %Y %I:%M %p')

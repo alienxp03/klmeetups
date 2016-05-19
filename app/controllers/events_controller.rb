@@ -7,6 +7,9 @@ class EventsController < ApplicationController
     @event = Event.new(new_event_params)
 
     if @event.save
+      flash[:info] = 'Your event has been submitted! '\
+                     'It will be listed here soon enough. Thank you!'
+      redirect_to events_path
     else
       flash[:danger] = 'Please complete the form with valid data'
       render :new, event: @event
@@ -29,6 +32,6 @@ class EventsController < ApplicationController
   def permitted_params
     params.require(:event)
       .permit(:name, :description, :url, :start_time,:email,
-        location_attributes: [])
+        location_attributes: [:name, :full_address, :latitude, :longitude])
   end
 end
