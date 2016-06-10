@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
   validates :name, :url, :description, :entry_type, :status, :start_time, presence: true
   validates :email, presence: true, if: 'manual?'
   validates :external_id, presence: true, if: 'automated?'
+  validate :start_time_validation, if: 'start_time'
 
   scope :all_events, -> { authorized }
   scope :this_week, -> { authorized.where(start_time: DateTime.current..1.week.from_now) }
@@ -17,8 +18,7 @@ class Event < ActiveRecord::Base
 
   class << self
     def latest
-      authorized
-      .joins(:group).where(groups: { status: Group.statuses[:authorized] })
+      joins(:group).where(groups: { status: Group.statuses[:authorized] })
       .where(start_time: DateTime.current..3.months.from_now)
       .order(:start_time)
     end
@@ -26,6 +26,14 @@ class Event < ActiveRecord::Base
     def prune
       joins(:group).where(groups: { status: Group.statuses[:disabled] })
       .delete_all
+    end
+  end
+
+  private
+
+  def start_time_validation
+    if start_time < DateTime.current
+      errors.add(:start_time, 'We accept events in the future only')
     end
   end
 end

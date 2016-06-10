@@ -44,10 +44,19 @@ module Api
     end
 
     def self.event_params(json, group)
-      group
+      location = json['place'].try(:[],'location')
+
+      full_address =
+        if location
+          "#{location['street']}, #{location['zip']}, #{location['city']},
+          #{location['state']}, #{location['country']}"
+        else
+          nil
+        end
 
       location_attributes = {
         name: json['place']['name'],
+        full_address: full_address,
         street: json['place'].try(:[],'location').try(:[],'street'),
         zip: json['place'].try(:[],'location').try(:[],'zip'),
         city: json['place'].try(:[],'location').try(:[],'city'),

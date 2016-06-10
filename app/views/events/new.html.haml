@@ -44,12 +44,16 @@
 
             - @event.build_location
             = f.fields_for :location do |fields|
+              = fields.hidden_field :name
+              = fields.hidden_field :full_address
               = fields.hidden_field :latitude
               = fields.hidden_field :longitude
 
 :javascript
   $(function () {
-      $('#event_start_time').datetimepicker();
+      $('#event_start_time').datetimepicker({
+        format: 'D MMM YYYY, hh:mm A'
+      });
   });
 
   function initMap() {
@@ -110,7 +114,11 @@
 
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, marker);
-      $("#event_location_attributes").val(place.geometry.location.lat() + ',' + place.geometry.location.lng());
+
+      $("#event_location_attributes_name").val(place.address_components[0].long_name);
+      $("#event_location_attributes_full_address").val(place.formatted_address);
+      $("#event_location_attributes_latitude").val(place.geometry.location.lat());
+      $("#event_location_attributes_longitude").val(place.geometry.location.lng());
     });
   }
 

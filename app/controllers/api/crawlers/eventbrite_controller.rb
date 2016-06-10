@@ -8,7 +8,7 @@ module Api::Crawlers
         last_updated = result['changed'].to_datetime
 
         next if event.last_updated == last_updated
-        updated = event.update(event_hash(event, result))
+        event.update(event_hash(event, result))
       end
     end
 
@@ -20,24 +20,10 @@ module Api::Crawlers
         "token=#{ENV['EVENTBRITE_TOKEN']}"\
         "&venue.country=#{ENV['COUNTRY']}"\
         "&categories=102"\
+        "&expand=venue,organizer"\
+        "&price=free"\
         "&format=json"
       make_request(URI.escape(url))['events']
-    end
-
-    def self.search_group(id)
-      url = BASE_URL +
-      "organizers/6903698963?"\
-      "token=#{ENV['EVENTBRITE_TOKEN']}"\
-      "&format=json"
-      make_request(url)
-    end
-
-    def self.search_venue(id)
-      url = BASE_URL +
-      "venues/#{id}?"\
-      "token=#{ENV['EVENTBRITE_TOKEN']}"\
-      "&format=json"
-      make_request(url)
     end
 
     def self.find_or_create_group(json)
@@ -53,11 +39,8 @@ module Api::Crawlers
     end
 
     def self.event_hash(event, json)
-      venue = search_venue(json['venue_id'])
-      address = venue.try(:[], 'address')
-
-      group = find_or_create_group(search_group(json['organizer_id']))
-
+      venue = json['venue']
+      group = find_or_create_group(json['organizer'])
       status = event.status || 'authorized'
 
       {
@@ -71,8 +54,8 @@ module Api::Crawlers
         group: group,
         location_attributes: {
           name: venue.try(:[],'name'),
-          street: address.try(:[], 'address_1'),
-          city: address.try(:[], 'city'),
+          street: venue.try(:[], 'address').try(:[], 'address_1'),
+          city: venue.try(:[], 'address').try(:[], 'city'),
           state: venue.try(:[],'region'),
           country: ENV['COUNTRY'],
           latitude: venue['latitude'],

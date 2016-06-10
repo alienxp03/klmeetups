@@ -62,13 +62,14 @@ ActiveRecord::Schema.define(version: 20160505151135) do
     t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "full_address"
     t.string   "street"
     t.string   "zip"
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "oauths", force: :cascade do |t|

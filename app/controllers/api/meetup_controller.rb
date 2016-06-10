@@ -61,6 +61,7 @@ module Api
         group: group,
         location_attributes: {
           name: venue.try(:[],'name'),
+          full_address: json['name'],
           street: venue.try(:[], 'address_1'),
           city: ENV['CITY'],
           state: venue.try(:[],'state'),
