@@ -319,6 +319,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   ffaker
+  font-awesome-rails
   fullcalendar-rails
   http
   httparty
@@ -342,4 +343,4 @@ DEPENDENCIES
   twitter-bootstrap-rails
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

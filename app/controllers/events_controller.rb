@@ -20,6 +20,10 @@ class EventsController < ApplicationController
     @events = Event.authorized
   end
 
+  def calendar
+    @events = Event.authorized
+  end
+
   private
 
   def new_event_params

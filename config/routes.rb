@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :events, only: [:new, :index] do
     collection do
+      get 'calendar', to: 'events#calendar'
       post 'create', to: 'events#create', as: 'create'
     end
   end
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   end
 
   get 'oauth', to: 'api/oauth#index'
+  get 'oauth/refresh_access_token', to: 'api/oauth#refresh_access_token'
   get 'oauth/callback', to: 'api/oauth#callback'
 end

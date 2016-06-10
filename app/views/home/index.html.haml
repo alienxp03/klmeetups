@@ -4,116 +4,31 @@
       %h1 Malaysia Meetups!
       %hr
         %p Exploring the tech scene in Malaysia? Connect with designers, makers and engineers!
-        %a.btn.btn-primary.btn-xl.page-scroll{:href => "#home"} Find out more!
-%section#home.bg-primary
+        %a.btn.btn-primary.btn-xl.page-scroll{:href => "#upcoming"} Check upcoming events!
+%section#upcoming.bg-light-dark
   .container
     .row
       .col-lg-8.col-lg-offset-2.text-center
-        %h2.section-heading We've got what you need!
-        %hr.light
-          %p.text-faded MalaysianMeetups has everything you need to get your new website up and running in no time! All of the templates and themes on MalaysianMeetups are open source, free to download, and easy to use. No strings attached!
-          %a.btn.btn-default.btn-xl{:href => "#"} Get Started!
-%section#services
-  .container
-    .row
+        %h2.section-heading Upcoming events
       .col-lg-12.text-center
-        %h2.section-heading At Your Service
-        %hr.primary
-  .container
-    .row
-      .col-lg-3.col-md-6.text-center
-        .service-box
-          %i.fa.fa-4x.fa-diamond.wow.bounceIn.text-primary
-          %h3 Sturdy Templates
-          %p.text-muted Our templates are updated regularly so they don't break.
-      .col-lg-3.col-md-6.text-center
-        .service-box
-          %i.fa.fa-4x.fa-paper-plane.wow.bounceIn.text-primary{"data-wow-delay" => ".1s"}
-          %h3 Ready to Ship
-          %p.text-muted You can use this theme as is, or you can make changes!
-      .col-lg-3.col-md-6.text-center
-        .service-box
-          %i.fa.fa-4x.fa-newspaper-o.wow.bounceIn.text-primary{"data-wow-delay" => ".2s"}
-          %h3 Up to Date
-          %p.text-muted We update dependencies to keep things fresh.
-      .col-lg-3.col-md-6.text-center
-        .service-box
-          %i.fa.fa-4x.fa-heart.wow.bounceIn.text-primary{"data-wow-delay" => ".3s"}
-          %h3 Made with Love
-          %p.text-muted You have to make your websites with love these days!
-%section#portfolio.no-padding
-  .container-fluid
-    .row.no-gutter
-      .col-lg-4.col-sm-6
-        %a.portfolio-box{:href => "#"}
-          %img.img-responsive{:alt => "", :src => "#{image_path('1.jpg')}"}
-            .portfolio-box-caption
-              .portfolio-box-caption-content
-                .project-category.text-faded
-                  Category
-                .project-name
-                  Project Name
-      .col-lg-4.col-sm-6
-        %a.portfolio-box{:href => "#"}
-          %img.img-responsive{:alt => "", :src => "#{image_path('2.jpg')}"}
-            .portfolio-box-caption
-              .portfolio-box-caption-content
-                .project-category.text-faded
-                  Category
-                .project-name
-                  Project Name
-      .col-lg-4.col-sm-6
-        %a.portfolio-box{:href => "#"}
-          %img.img-responsive{:alt => "", :src => "#{image_path('3.jpg')}"}
-            .portfolio-box-caption
-              .portfolio-box-caption-content
-                .project-category.text-faded
-                  Category
-                .project-name
-                  Project Name
-      .col-lg-4.col-sm-6
-        %a.portfolio-box{:href => "#"}
-          %img.img-responsive{:alt => "", :src => "#{image_path('4.jpg')}"}
-            .portfolio-box-caption
-              .portfolio-box-caption-content
-                .project-category.text-faded
-                  Category
-                .project-name
-                  Project Name
-      .col-lg-4.col-sm-6
-        %a.portfolio-box{:href => "#"}
-          %img.img-responsive{:alt => "", :src => "#{image_path('5.jpg')}"}
-            .portfolio-box-caption
-              .portfolio-box-caption-content
-                .project-category.text-faded
-                  Category
-                .project-name
-                  Project Name
-      .col-lg-4.col-sm-6
-        %a.portfolio-box{:href => "#"}
-          %img.img-responsive{:alt => "", :src => "#{image_path('6.jpg')}"}
-            .portfolio-box-caption
-              .portfolio-box-caption-content
-                .project-category.text-faded
-                  Category
-                .project-name
-                  Project Name
-%aside.bg-dark
-  .container.text-center
-    .call-to-action
-      %h2 Free Download at MalaysianMeetups!
-      %a.btn.btn-default.btn-xl.wow.tada{:href => "#"} Download Now!
+        - @events.latest.first(10).each do |event|
+          %hr.light
+            %h3=link_to(event.name, event.url, target: '_blank')
+            %p.text-faded= event.start_time.strftime('%d %B %Y, %I:%M %p')
+            %p.text-faded= event.location.formatted_address
 %section#contact
   .container
     .row
       .col-lg-8.col-lg-offset-2.text-center
-        %h2.section-heading Let's Get In Touch!
+        %h2.section-heading Get In Touch!
         %hr.primary
-          %p Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!
+          %p 
       .col-lg-4.col-lg-offset-2.text-center
-        %i.fa.fa-phone.fa-3x.wow.bounceIn
-        %p 123-456-6789
+        %i.fa.fa-github-alt.fa-3x.wow
+        %br
+        %p= link_to 'Github', 'https://github.com/alienxp03/malaysiameetups', target: '_blank'
       .col-lg-4.text-center
-        %i.fa.fa-envelope-o.fa-3x.wow.bounceIn{"data-wow-delay" => ".1s"}
+        %i.fa.fa-envelope-o.fa-3x.wow
+        %br
         %p
-          %a{:href => "mailto:your-email@your-domain.com"} feedback@startbootstrap.com
+          %a{:href => "mailto:alienxp03@gmail.com"} alienxp03@gmail.com

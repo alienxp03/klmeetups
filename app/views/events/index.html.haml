@@ -2,25 +2,9 @@
   .container
     .row
       .col-lg-8.col-lg-offset-2.text-center
-        %h2.section-heading Upcoming events
+        %h2.section-heading All Upcoming events
       .col-lg-12.text-center
-        - @events.latest.first(10).each do |event|
+        - @events.latest.each do |event|
           %hr.light
             %h3=link_to(event.name, event.url, target: '_blank')
             %p.text-faded=event.start_time.strftime('%d %B %Y %I:%M %p')
-
-%section#home.bg-light
-  .container
-    #calendar
-
-:javascript
-  var events = #{@events.map do |event| { title: event.name, start: event.start_time, url: event.url } end.to_json}
-  $(document).ready(function() {
-    $('#calendar').fullCalendar({
-        events: events,
-        eventClick: function(calEvent, jsEvent, view) {
-          window.open(calEvent.url, '_blank');
-          return false;
-      }
-    })
-  });

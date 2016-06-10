@@ -15,6 +15,7 @@ gem 'momentjs-rails'
 gem 'fullcalendar-rails'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'twitter-bootstrap-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'dotenv-rails'

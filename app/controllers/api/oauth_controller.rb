@@ -4,6 +4,10 @@ module Api
   class OauthController < Api::ApplicationController
     skip_before_filter :authorize!
 
+    def refresh_access_token
+      render json: { access_token: 'access_token_yo' }
+    end
+
     def index
       if Oauth.first
         message('Already authorized')

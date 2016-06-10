@@ -1,0 +1,28 @@
+%section#home.bg-light-dark
+  .container
+    #calendar
+
+:javascript
+  var events = #{@events.map do |event| { title: event.name, address: event.location.formatted_address, start: event.start_time, url: event.url } end.to_json}
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+      theme: true,
+      events: events,
+      eventClick: function(calEvent, jsEvent, view) {
+        window.open(calEvent.url, '_blank');
+        return false;
+      },
+      eventRender: function(event, element) {
+        $(element).tooltip(
+          {
+            title: event.title
+          }
+        );
+      }
+    })
+  });
+
+:css
+  .tooltip-inner {
+    padding: 25px;
+  }

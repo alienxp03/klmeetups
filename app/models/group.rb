@@ -26,6 +26,8 @@ class Group < ActiveRecord::Base
       'Facebook'
     elsif url.include? 'meetup.com/'
       'Meetup'
+    elsif url.include? 'eventbrite.com/'
+      'Eventbrite'
     else
       nil
     end 

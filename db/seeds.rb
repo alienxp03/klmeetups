@@ -62,3 +62,5 @@ groups = [
 ]
 
 groups.each do |group| Group.create(group) end
+
+Admin.create(email: 'alienxp03@yahoo.com', password: 'password')

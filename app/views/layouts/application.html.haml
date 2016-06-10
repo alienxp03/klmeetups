@@ -13,7 +13,6 @@
               / = stylesheet_link_tag 'bootstrap.min.css'
               / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
               / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-              / = stylesheet_link_tag 'font-awesome.min.css'
               / = stylesheet_link_tag 'animate.min.css'
               / = stylesheet_link_tag 'creative.css'
   %body#page-top
@@ -34,6 +33,8 @@
               = link_to('Home', root_path)
             %li{class: current_page?(events_path) ? 'active' : ''}
               = link_to('Events List', events_path)
+            %li{class: current_page?(calendar_events_path) ? 'active' : ''}
+              = link_to('Calendar', calendar_events_path)
             %li{class: current_page?(new_event_path) ? 'active' : ''}
               = link_to('Submit event', new_event_path)
         / /.navbar-collapse
