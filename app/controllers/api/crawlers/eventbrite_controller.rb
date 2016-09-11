@@ -23,7 +23,8 @@ module Api::Crawlers
         "&expand=venue,organizer"\
         "&price=free"\
         "&format=json"
-      make_request(URI.escape(url))['events']
+      response = make_request(URI.escape(url))['events']
+      response = [] unless response
     end
 
     def self.find_or_create_group(json)

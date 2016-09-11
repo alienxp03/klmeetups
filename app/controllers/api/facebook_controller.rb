@@ -18,6 +18,8 @@ module Api
         events.push(event)
       end
       fetch_latest(events)
+    rescue Koala::Facebook::AuthenticationError => e
+      e
     end
 
     private
