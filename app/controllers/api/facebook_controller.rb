@@ -3,8 +3,8 @@
 module Api
   class FacebookController < Api::ApplicationController
     def self.update_events
-      fields = 'id,name,description,start_time,end_time,attending_count,
-      interested_count,place,updated_time'
+      fields = 'id,name,description,start_time,end_time,attending_count,'\
+               'interested_count,place,updated_time'
 
       events = []
 
@@ -19,7 +19,7 @@ module Api
       end
       fetch_latest(events)
     rescue Koala::Facebook::AuthenticationError => e
-      e
+      puts "FACEBOOK ERROR: #{e}"
     end
 
     private

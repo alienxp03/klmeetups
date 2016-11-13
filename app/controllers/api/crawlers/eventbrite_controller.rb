@@ -7,7 +7,9 @@ module Api::Crawlers
         event = Event.find_or_initialize_by(external_id: result['id'])
         last_updated = result['changed'].to_datetime
 
+        next unless result['venue']['address']['country'] == 'MY'
         next if event.last_updated == last_updated
+
         event.update(event_hash(event, result))
       end
     end
@@ -18,13 +20,13 @@ module Api::Crawlers
       url = BASE_URL +
         "events/search?"\
         "token=#{ENV['EVENTBRITE_TOKEN']}"\
-        "&venue.country=#{ENV['COUNTRY']}"\
+        "&location.address=#{ENV['COUNTRY']}"\
         "&categories=102"\
         "&expand=venue,organizer"\
         "&price=free"\
         "&format=json"
       response = make_request(URI.escape(url))['events']
-      response = [] unless response
+      response.present? ? response : []
     end
 
     def self.find_or_create_group(json)
