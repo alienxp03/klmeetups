@@ -17,6 +17,5 @@
 /tmp
 
 .env
-config/database.yml
 
 *.DS_STORE

@@ -17,6 +17,17 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 
+gem 'puma'
+
+group :development do
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false
+end
+
+
 group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'

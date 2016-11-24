@@ -1,0 +1,23 @@
+default: &default
+  adapter:  postgresql
+  pool:     5
+  host:     localhost
+  encoding: unicode
+
+development:
+  <<: *default
+  database: malaysiameetups_development
+  username: azuan
+  password: abc123
+
+test:
+  <<: *default
+  database: malaysiameetups_test
+  username: azuan
+  password: abc123
+
+production:
+  <<: *default
+  database: malaysiameetups_production
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
