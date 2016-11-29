@@ -6,7 +6,7 @@ I thought it would be a good idea if I can discover events from Facebook groups,
 
 ##API endpoints
 
-- <a href="https://malaysia.herokuapp.com/api/events" target="_blank">/api/events</a>
+- <a href="http://www.klmeetup.com/api/events" target="_blank">/api/events</a>
 
 ##Contributions
 I need help, of course. Currently it will only find events based on groups, which are defined in <a href="https://github.com/alienxp03/malaysiameetups/blob/master/app/controllers/api/facebook_groups.rb" target="_blank">FacebookGroups</a>. You can either create a new pull request, or submit an issue.

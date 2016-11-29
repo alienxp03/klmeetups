@@ -19,16 +19,21 @@
 %section#contact
   .container
     .row
-      .col-lg-8.col-lg-offset-2.text-center
+      .col-lg-12.col-lg.text-center
         %h2.section-heading Get In Touch!
         %hr.primary
-          %p 
-      .col-lg-4.col-lg-offset-2.text-center
-        %i.fa.fa-github-alt.fa-3x.wow
-        %br
-        %p= link_to 'Github', 'https://github.com/alienxp03/malaysiameetups', target: '_blank'
+          %p
       .col-lg-4.text-center
-        %i.fa.fa-envelope-o.fa-3x.wow
-        %br
-        %p
-          %a{:href => "mailto:alienxp03@gmail.com"} alienxp03@gmail.com
+      .col-lg-1.text-center
+        %a{href: "https://github.com/alienxp03/malaysiameetups", target: '_blank'}
+          %i.fa.fa-github-alt.fa-3x.wow
+          %br Github
+      .col-lg-2.text-center
+        %a{href: "mailto:azuanrb@gmail.com"}
+          %i.fa.fa-envelope-o.fa-3x.wow
+          %br Email
+      .col-lg-1.text-center
+        %a{href: "https://facebook.com/alienxp03", target: '_blank'}
+          %i.fa.fa-facebook-official.fa-3x.wow
+          %br Facebook
+      .col-lg-4.text-center
