@@ -19,7 +19,11 @@ module Api
       end
       fetch_latest(events)
     rescue Koala::Facebook::AuthenticationError => e
+      puts "FACEBOOK KOALA ERROR: #{e}"
+      raise e
+    rescue Exception => e
       puts "FACEBOOK ERROR: #{e}"
+      raise e
     end
 
     private
