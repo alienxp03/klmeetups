@@ -1,0 +1,18 @@
+%section#home.bg-light-dark
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.text-center
+        %h2.section-heading Facebook Groups
+      .col-lg-12.text-center
+        - @facebook_groups.each do |group|
+          %hr.light
+            %h3=link_to(group.name, group.url, target: '_blank')
+    .row{ style: 'margin-top: 50px'}
+      .col-lg-8.col-lg-offset-2.text-center
+        %h2.section-heading Meetup Groups
+      .col-lg-12.text-center
+        - @meetup_groups.each do |group|
+          %hr.light
+            %h3=link_to(group.name, group.url, target: '_blank')
+
+= render partial: 'partial/contact_me', locals: { title: 'Have suggestions? Contact me!' }

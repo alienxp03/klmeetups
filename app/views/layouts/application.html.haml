@@ -32,7 +32,9 @@
             %li{class: current_page?(root_path) ? 'active' : ''}
               = link_to('Home', root_path)
             %li{class: current_page?(events_path) ? 'active' : ''}
-              = link_to('Events List', events_path)
+              = link_to('Events', events_path)
+            %li{class: current_page?(groups_events_path) ? 'active' : ''}
+              = link_to('Groups', groups_events_path)
             %li{class: current_page?(calendar_events_path) ? 'active' : ''}
               = link_to('Calendar', calendar_events_path)
             %li{class: current_page?(new_event_path) ? 'active' : ''}

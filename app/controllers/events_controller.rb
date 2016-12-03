@@ -24,6 +24,11 @@ class EventsController < ApplicationController
     @events = Event.authorized
   end
 
+  def groups
+    @facebook_groups = Group.authorized.facebook.order(:name)
+    @meetup_groups = Group.authorized.meetup.order(:name)
+  end
+
   private
 
   def new_event_params

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :events, only: [:new, :index] do
     collection do
       get 'calendar', to: 'events#calendar'
+      get 'groups', to: 'events#groups'
       post 'create', to: 'events#create', as: 'create'
     end
   end

@@ -16,24 +16,4 @@
             %h3=link_to(event.name, event.url, target: '_blank')
             %p.text-faded= event.start_time.strftime('%d %B %Y, %I:%M %p')
             %p.text-faded= event.location.formatted_address
-%section#contact
-  .container
-    .row
-      .col-lg-12.col-lg.text-center
-        %h2.section-heading Get In Touch!
-        %hr.primary
-          %p
-      .col-lg-4.text-center
-      .col-lg-1.text-center
-        %a{href: "https://github.com/alienxp03/malaysiameetups", target: '_blank'}
-          %i.fa.fa-github-alt.fa-3x.wow
-          %br Github
-      .col-lg-2.text-center
-        %a{href: "mailto:azuanrb@gmail.com"}
-          %i.fa.fa-envelope-o.fa-3x.wow
-          %br Email
-      .col-lg-1.text-center
-        %a{href: "https://facebook.com/alienxp03", target: '_blank'}
-          %i.fa.fa-facebook-official.fa-3x.wow
-          %br Facebook
-      .col-lg-4.text-center
+= render partial: 'partial/contact_me', locals: { title: 'Get in touch!' }
