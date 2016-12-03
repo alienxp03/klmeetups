@@ -17,6 +17,12 @@ class Event < ActiveRecord::Base
   scope :this_month, -> { authorized.where(start_time: DateTime.current..1.month.from_now) }
 
   class << self
+    def future
+      joins(:group).where(groups: { status: Group.statuses[:authorized] })
+      .where('start_time >= ? ', DateTime.current)
+      .order(:start_time)
+    end
+
     def latest
       joins(:group).where(groups: { status: Group.statuses[:authorized] })
       .where(start_time: DateTime.current..3.months.from_now)

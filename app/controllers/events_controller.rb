@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.authorized.order(:start_time)
+    @events = Event.future.authorized.order(:start_time)
                    .group_by do |x|
                       x.start_time.strftime("#{x.start_time.day.ordinalize} %B")
                     end
