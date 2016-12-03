@@ -17,6 +17,10 @@ class Group < ActiveRecord::Base
     def meetup
       authorized.where('url LIKE ?', '%meetup.com/%')
     end
+
+    def eventbrite
+      authorized.where('url LIKE ?', '%eventbrite.com/%')
+    end
   end
 
   private

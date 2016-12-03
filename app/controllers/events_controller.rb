@@ -17,7 +17,10 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.authorized
+    @events = Event.authorized.order(:start_time)
+                   .group_by do |x|
+                      x.start_time.strftime("#{x.start_time.day.ordinalize} %B")
+                    end
   end
 
   def calendar
@@ -27,6 +30,7 @@ class EventsController < ApplicationController
   def groups
     @facebook_groups = Group.authorized.facebook.order(:name)
     @meetup_groups = Group.authorized.meetup.order(:name)
+    @eventbrite_groups = Group.authorized.eventbrite.order(:name)
   end
 
   private
