@@ -1,8 +1,8 @@
-module Api::Crawlers
-  class EventbriteController < Api::ApplicationController
+module Crawlers
+  class EventbriteController < ApplicationController
     BASE_URL = "https://www.eventbriteapi.com/v3/"
 
-    def self.create_or_update_events
+    def self.search_events
       search_events.each do |result|
         event = Event.find_or_initialize_by(external_id: result['id'])
         last_updated = result['changed'].to_datetime
@@ -20,13 +20,22 @@ module Api::Crawlers
       url = BASE_URL +
         "events/search?"\
         "token=#{ENV['EVENTBRITE_TOKEN']}"\
-        "&location.address=#{ENV['COUNTRY']}"\
+        "&location.address=Kuala Lumpur"\
+        "&location.within=200km"\
         "&categories=102"\
         "&expand=venue,organizer"\
         "&price=free"\
         "&format=json"
-      response = make_request(URI.escape(url))['events']
-      response.present? ? response : []
+      response = make_request(URI.escape(url))
+      events = []
+
+      if response['events'].present?
+        (1..response['pagination']['page_count']).each do |page|
+          events << make_request(URI.escape("#{url}&page=#{page}"))['events']
+        end
+      end
+
+      events
     end
 
     def self.find_or_create_group(json)

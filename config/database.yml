@@ -6,18 +6,18 @@ default: &default
 
 development:
   <<: *default
-  database: malaysiameetups_development
+  database: klmeetups_development
   username: azuan
   password: abc123
 
 test:
   <<: *default
-  database: malaysiameetups_test
+  database: klmeetups_test
   username: azuan
   password: abc123
 
 production:
   <<: *default
-  database: malaysiameetups_production
+  database: klmeetups_production
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASSWORD'] %>

@@ -1,8 +1,9 @@
-# Api::FacebookController
+module Crawlers
+  class FacebookController < ApplicationController
+    def self.search_events
+      refresh_facebook_token
 
-module Api
-  class FacebookController < Api::ApplicationController
-    def self.update_events
+      fb_api = Koala::Facebook::API.new(Setting.facebook_access_token)
       fields = 'id,name,description,start_time,end_time,attending_count,'\
                'interested_count,place,updated_time'
 
@@ -11,7 +12,7 @@ module Api
       Group.facebook.authorized.each do |group|
         event = {
           group: group,
-          events: @@fb_api
+          events: fb_api
           .get_object("/#{group.external_id}/events?fields=#{fields}"\
             "&since=#{Time.current.to_i}&until=#{1.year.from_now.to_i}")
         }
@@ -27,6 +28,16 @@ module Api
     end
 
     private
+
+    def self.refresh_facebook_token
+      refresh_token_url = "https://graph.facebook.com/oauth/access_token?"\
+                 "&client_id=#{ENV['FACEBOOK_APP_ID']}"\
+                 "&client_secret=#{ENV['FACEBOOK_APP_SECRET']}"\
+                 "&grant_type=fb_exchange_token"\
+                 "&fb_exchange_token=#{Setting.facebook_access_token}"
+      response = Rack::Utils.parse_nested_query HTTP.get(refresh_token_url).to_s
+      Setting.facebook_access_token = response['access_token']
+    end
 
     def self.fetch_latest(json_events)
       json_events.each do |events|

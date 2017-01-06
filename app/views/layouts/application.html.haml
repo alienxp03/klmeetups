@@ -8,7 +8,7 @@
         %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
           %meta{:content => "", :name => "description"}
             %meta{:content => "", :name => "author"}
-              %title MalaysianMeetups
+              %title= yield(:title)
               / Bootstrap Core CSS
               / = stylesheet_link_tag 'bootstrap.min.css'
               / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
@@ -25,7 +25,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand.page-scroll{:href => root_path} Malaysian Meetups
+          %a.navbar-brand.page-scroll{:href => root_path} KL Meetups
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right

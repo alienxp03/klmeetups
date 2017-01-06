@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :crawlers, only: [:index]
   end
 
+  get 'crawlers/search', to: 'crawlers/application#search'
+
   get 'oauth', to: 'api/oauth#index'
   get 'oauth/refresh_access_token', to: 'api/oauth#refresh_access_token'
   get 'oauth/callback', to: 'api/oauth#callback'

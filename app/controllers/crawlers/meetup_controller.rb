@@ -1,7 +1,5 @@
-# Api::MeetupController
-
-module Api
-  class MeetupController < Api::ApplicationController
+module Crawlers
+  class MeetupController < ApplicationController
     BASE_URL = "https://api.meetup.com/2/open_events?"\
       "&sign=true"\
       "&key=#{ENV['MEETUP_API_KEY']}"\
@@ -10,7 +8,7 @@ module Api
       "&time=#{Time.now.to_i * 1000},#{3.months.from_now.to_i * 1000}"\
       "&category=34"
 
-    def self.update_events
+    def self.search_events
       make_request(URI.escape(BASE_URL))['results'].each do |result|
         event = Event.find_or_initialize_by(external_id: result['id'])
         last_updated = DateTime.strptime((result['updated'] / 1000).to_s,'%s')
@@ -70,10 +68,6 @@ module Api
           longitude: lon
         }
       }
-    end
-
-    def self.make_request(url)
-      JSON.parse(HTTP.get(url).to_s)
     end
   end
 end

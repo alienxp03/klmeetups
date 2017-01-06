@@ -1,15 +1,11 @@
-# Api::OauthController
-
 module Api
   class OauthController < Api::ApplicationController
-    skip_before_filter :authorize!
-
     def refresh_access_token
       render json: { access_token: 'access_token_yo' }
     end
 
     def index
-      if Oauth.first
+      if Setting.facebook_access_token
         message('Already authorized')
       else
         request_authorization
@@ -18,11 +14,8 @@ module Api
 
     def callback
       access_token = @@oauth.get_access_token(params[:code])
-      if Oauth.new(access_token: access_token).save
-        redirect_on_success
-      else
-        error('Failed to authorized')
-      end
+      Setting.facebook_access_token = access_token
+      redirect_on_success
     end
 
     private

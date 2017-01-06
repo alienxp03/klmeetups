@@ -255,6 +255,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.5)
+      rails (>= 4.2.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -402,6 +404,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (= 4.2.5)
+  rails-settings-cached
   rails_12factor
   rails_admin
   rails_best_practices

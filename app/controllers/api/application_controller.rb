@@ -1,20 +1,5 @@
-# Api::ApiApplicationController
-
 module Api
   class ApplicationController < ActionController::Base
-    before_action :authorize!, except: [:oauth]
-
-    def authorize!
-      oauth = Oauth.first
-
-      if oauth
-        @@fb_api ||= Koala::Facebook::API.new(oauth.access_token)
-      else
-        session[:referer] = request.url
-        redirect_to '/oauth'
-      end
-    end
-
     def message(message)
       render json: { message: message }
     end
