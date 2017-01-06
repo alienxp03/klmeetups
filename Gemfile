@@ -16,8 +16,10 @@ gem 'fullcalendar-rails'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
+gem 'sidekiq'
+gem 'ribbon'
 
-gem 'puma'
+gem 'passenger'
 gem 'rails-settings-cached'
 
 group :development do
@@ -28,7 +30,6 @@ group :development do
   gem 'capistrano3-puma',   require: false
   gem 'guard-livereload', '~> 2.5', require: false
 end
-
 
 group :development, :test do
   gem 'dotenv-rails'

@@ -6,8 +6,7 @@ module Crawlers
       search_eventbrite
       search_facebook
 
-      return render json: { status: 201, messages: @messages } unless @messages.empty?
-      render json: { status: 200, messages: ['No new events found']}
+      head :ok
     end
 
     def self.make_request(url)

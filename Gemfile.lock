@@ -87,6 +87,7 @@ GEM
     colored (1.2)
     commonjs (0.2.7)
     concurrent-ruby (1.0.0)
+    connection_pool (2.2.0)
     database_cleaner (1.5.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -162,6 +163,7 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jewel (0.0.9)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -214,6 +216,9 @@ GEM
     orm_adapter (0.5.0)
     parser (2.3.0.4)
       ast (~> 2.2)
+    passenger (5.0.30)
+      rack
+      rake (>= 0.8.1)
     pg (0.18.4)
     powerpack (0.1.1)
     private_attr (1.1.0)
@@ -234,6 +239,8 @@ GEM
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
       rack (~> 1.1)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5)
@@ -295,6 +302,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redis (3.3.1)
     reek (3.10.1)
       codeclimate-engine-rb (~> 0.3.1)
       parser (~> 2.3)
@@ -304,6 +312,8 @@ GEM
     require_all (1.3.3)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
+    ribbon (0.8.0)
+      jewel
     rspec-core (3.4.2)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -341,6 +351,15 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    sidekiq (4.1.4)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
+      sinatra (>= 1.4.7)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     slop (3.6.0)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -397,21 +416,23 @@ DEPENDENCIES
   jbuilder
   koala (~> 2.2)
   momentjs-rails
+  passenger
   pg
   pry
   pry-byebug
   pry-clipboard
   pry-rails
-  puma
   rails (= 4.2.5)
   rails-settings-cached
   rails_12factor
   rails_admin
   rails_best_practices
   reek
+  ribbon
   rspec-rails
   rubocop
   shoulda-matchers
+  sidekiq
   sprockets (~> 3.0)
   twitter-bootstrap-rails
 
