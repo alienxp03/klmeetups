@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  belongs_to :event
+  has_one :event
 
   validates :name, :latitude, :longitude, presence: true
 

@@ -5,7 +5,7 @@ module Crawlers
       "&key=#{ENV['MEETUP_API_KEY']}"\
       "&country=#{ENV['COUNTRY']}"\
       "&city=#{ENV['CITY']}"\
-      "&time=#{Time.now.to_i * 1000},#{3.months.from_now.to_i * 1000}"\
+      "&time=#{12.months.ago.to_i * 1000},#{3.months.from_now.to_i * 1000}"\
       "&category=34"
 
     def self.search_events

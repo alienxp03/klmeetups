@@ -127,6 +127,9 @@ GEM
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
       momentjs-rails (>= 2.9.0)
+    gibbon (2.2.4)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     guard (2.14.0)
@@ -163,7 +166,6 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jewel (0.0.9)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -312,8 +314,6 @@ GEM
     require_all (1.3.3)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
-    ribbon (0.8.0)
-      jewel
     rspec-core (3.4.2)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -410,6 +410,7 @@ DEPENDENCIES
   ffaker
   font-awesome-rails
   fullcalendar-rails
+  gibbon
   guard-livereload (~> 2.5)
   http
   httparty
@@ -428,7 +429,6 @@ DEPENDENCIES
   rails_admin
   rails_best_practices
   reek
-  ribbon
   rspec-rails
   rubocop
   shoulda-matchers

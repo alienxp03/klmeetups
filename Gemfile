@@ -17,7 +17,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'sidekiq'
-gem 'ribbon'
+gem 'gibbon'
 
 gem 'passenger'
 gem 'rails-settings-cached'

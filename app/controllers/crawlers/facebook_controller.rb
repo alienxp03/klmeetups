@@ -14,7 +14,7 @@ module Crawlers
           group: group,
           events: fb_api
           .get_object("/#{group.external_id}/events?fields=#{fields}"\
-            "&since=#{Time.current.to_i}&until=#{1.year.from_now.to_i}")
+            "&since=#{12.months.ago.to_i}&until=#{1.year.from_now.to_i}")
         }
         events.push(event)
       end
