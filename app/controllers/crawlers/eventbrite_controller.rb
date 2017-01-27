@@ -3,7 +3,7 @@ module Crawlers
     BASE_URL = "https://www.eventbriteapi.com/v3/"
 
     def self.search_events
-      search_events.each do |result|
+      search_new_events.each do |result|
         event = Event.find_or_initialize_by(external_id: result['id'])
         last_updated = result['changed'].to_datetime
 
@@ -16,7 +16,7 @@ module Crawlers
 
     private
 
-    def self.search_events
+    def self.search_new_events
       url = BASE_URL +
         "events/search?"\
         "token=#{ENV['EVENTBRITE_TOKEN']}"\
@@ -31,7 +31,7 @@ module Crawlers
 
       if response['events'].present?
         (1..response['pagination']['page_count']).each do |page|
-          events << make_request(URI.escape("#{url}&page=#{page}"))['events']
+          events += make_request(URI.escape("#{url}&page=#{page}"))['events']
         end
       end
 
