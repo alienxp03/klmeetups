@@ -3,18 +3,18 @@
   %head
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
+    %title= 'KL Meetup'
     %meta{:charset => "utf-8"}
-      %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
-        %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-          %meta{:content => "", :name => "description"}
-            %meta{:content => "", :name => "author"}
-              %title= yield(:title)
-              / Bootstrap Core CSS
-              / = stylesheet_link_tag 'bootstrap.min.css'
-              / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-              / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-              / = stylesheet_link_tag 'animate.min.css'
-              / = stylesheet_link_tag 'creative.css'
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    / Bootstrap Core CSS
+    / = stylesheet_link_tag 'bootstrap.min.css'
+    / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    / = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+    / = stylesheet_link_tag 'animate.min.css'
+    / = stylesheet_link_tag 'creative.css'
   %body#page-top
     %nav#mainNav.navbar.navbar-default.navbar-fixed-top
       .container-fluid
