@@ -27,7 +27,7 @@ module Api
         "#{request.base_url}/oauth/callback"
       )
       redirect_to @@oauth
-        .url_for_oauth_code(permissions: 'user_managed_groups')
+        .url_for_oauth_code(permissions: 'groups_access_member_info')
     end
 
     def redirect_on_success
